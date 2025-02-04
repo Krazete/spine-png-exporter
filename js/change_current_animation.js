@@ -24,9 +24,9 @@ const change_spine = (id, assetSpineVersion) => {
     document.getElementById("player-container").innerHTML = "";
 
     current_spine = new runtimeSpineVersion.SpinePlayer("player-container", {
-        // jsonUrl: "/assets/" + id + "/" + id + ".json",
-        skelUrl: "/assets/" + id + "/" + id + ".skel",
-        atlasUrl: "/assets/" + id + "/" + id + ".atlas",
+        // jsonUrl: "./assets/" + id + "/" + id + ".json",
+        skelUrl: "./assets/" + id + "/" + id + ".skel",
+        atlasUrl: "./assets/" + id + "/" + id + ".atlas",
         backgroundColor: "00000000",
         alpha: true,
         premultipliedAlpha:  premultipliedAlphaValue,
