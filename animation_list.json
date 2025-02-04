@@ -8,5 +8,15 @@
         "name":"Neon",
         "id":"neon",
         "version": 4.1
+    },
+    {
+        "name":"kizunaai",
+        "id":"kizunaai",
+        "version": 4.1
+    },
+    {
+        "name":"blackai",
+        "id":"blackai",
+        "version": 4.1
     }
 ]
