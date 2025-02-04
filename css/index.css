@@ -77,3 +77,40 @@ body {
     border-bottom-right-radius: 10px;
     border-left: 2px white dashed;
 }
+
+#fps-label {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: white;
+    padding: 0 5px 0 0;
+}
+
+#fps {
+    width: 50px;
+    text-align: right;
+}
+
+#exporter {
+    position: absolute;
+    right: 10px;
+    top: 40px;
+}
+
+#export-progress {
+    position: absolute;
+    right: 10px;
+    top: 70px;
+    background: white;
+    padding: 0 5px;
+}
+
+#note {
+    position: absolute;
+    right: 10px;
+    top: 80px;
+    width: 150px;
+    font-size: small;
+    background: white;
+    padding: 0 5px;
+}

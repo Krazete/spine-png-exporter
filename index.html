@@ -24,28 +24,41 @@
         <label for="checkboxPremultipliedToggle">premultipliedAlpha</label>
     </div>
     <div id="visualiserMain"></div>
+    <label id="fps-label"><input type="number" id="fps" value="12"> fps</label>
+    <input type="button" id="exporter" value="Export">
+    <div id="export-progress">0 / 0 frames</div>
+    <ul id="note">
+        <li>Wait for transitions to finish before clicking Export.</li>
+        <li>Scrub the progress bar if exporting is stuck.</li>
+    </ul>
 
     <script>
-        var frames, frameCount, downloaded;
+        var exporter = document.getElementById("exporter");
+        var fpsInput = document.getElementById("fps");
+        var progress = document.getElementById("export-progress");
+        var frames, frameCount, fps, exportBegan, exportDone;
+
+        function beginExport() {
+            frames = {};
+            frameCount = 0;
+            fps = parseInt(fpsInput.value) || 12;
+            exportBegan = true;
+            downloadBegan = false;
+        }
 
         function downloadFrames() {
             var zip = new JSZip();
             for (var i in frames) {
                 zip.file(`frame-${i}.png`, frames[i].slice(22), {base64: true});
             }
-            zip.generateAsync({type:"blob"}).then(function(content) {
+            zip.generateAsync({type: "blob"}).then(function(content) {
                 saveAs(content, "frames");
             });
-            downloaded = true;
+            exportBegan = false;
+            downloadBegan = true;
         }
 
-        function resetFrames() {
-            frames = {};
-            frameCount = 0;
-            downloaded = false;
-        }
-        
-        resetFrames();
+        exporter.addEventListener("click", beginExport);
     </script>
     <script src="spine/spine-player40.js"></script>
     <script src="spine/spine-player41.js"></script>

@@ -15141,24 +15141,23 @@ var spine41 = (() => {
 
         /*** EXPORTER START ***/
         var animState = this.animationState;
-        if (animState) {
-          var fps = 12;
-          var duration = animState.tracks[0].animation.duration * fps;
+        if (exportBegan && animState) {
+          var duration = Math.floor(animState.tracks[0].animation.duration * fps);
           var time = this.playTime * fps;
-          if (time % 1 < 0.1) {
+          if (time % 1 < 0.1) { // precision; so 12.99999 isn't read as 12
             time = Math.floor(time);
             if (!frames[time] && time <= duration) {
               frames[time] = this.canvas.toDataURL();
               frameCount++;
             }
           }
-          if (frameCount >= Math.floor(duration)) {
-            if (!downloaded) {
+          if (frameCount >= duration) {
+            if (!downloadBegan) {
               downloadFrames();
             }
           }
           else {
-            console.log(frameCount, duration);
+            progress.textContent = `${frameCount + 1 || "???"} / ${duration || "???"} frames`;
           }
         }
         /*** EXPORTER END ***/
