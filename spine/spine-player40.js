@@ -14935,6 +14935,31 @@ ${e.message}`,
           this.loadingScreen.draw(loading)
         }
         if (loading && config.loading) config.loading(this, delta)
+
+        /*** EXPORTER START ***/
+        var animState = this.animationState;
+        if (animState) {
+          var fps = 12;
+          var duration = animState.tracks[0].animation.duration * fps;
+          var time = this.playTime * fps;
+          if (time % 1 < 0.1) {
+            time = Math.floor(time);
+            if (!frames[time] && time <= duration) {
+              frames[time] = this.canvas.toDataURL();
+              frameCount++;
+            }
+          }
+          if (frameCount >= Math.floor(duration)) {
+            if (!downloaded) {
+              downloadFrames();
+            }
+          }
+          else {
+            console.log(frameCount, duration);
+          }
+        }
+        /*** EXPORTER END ***/
+
       } catch (e) {
         this.showError(
           `Error: Unable to render skeleton.

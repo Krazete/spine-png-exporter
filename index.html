@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/spine-player.css">
     <link rel="stylesheet" href="css/index.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
 </head>
 <body>
     
@@ -23,6 +25,28 @@
     </div>
     <div id="visualiserMain"></div>
 
+    <script>
+        var frames, frameCount, downloaded;
+
+        function downloadFrames() {
+            var zip = new JSZip();
+            for (var i in frames) {
+                zip.file(`frame-${i}.png`, frames[i].slice(22), {base64: true});
+            }
+            zip.generateAsync({type:"blob"}).then(function(content) {
+                saveAs(content, "frames");
+            });
+            downloaded = true;
+        }
+
+        function resetFrames() {
+            frames = {};
+            frameCount = 0;
+            downloaded = false;
+        }
+        
+        resetFrames();
+    </script>
     <script src="spine/spine-player40.js"></script>
     <script src="spine/spine-player41.js"></script>
 
