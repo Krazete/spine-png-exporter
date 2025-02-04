@@ -27,8 +27,8 @@ const change_spine = (id, assetSpineVersion) => {
         // jsonUrl: "/assets/" + id + "/" + id + ".json",
         skelUrl: "/assets/" + id + "/" + id + ".skel",
         atlasUrl: "/assets/" + id + "/" + id + ".atlas",
-        backgroundColor: "2f353a",
-        alpha: false,
+        backgroundColor: "00000000",
+        alpha: true,
         premultipliedAlpha:  premultipliedAlphaValue,
         preserveDrawingBuffer:true,
         success: function (player) {
